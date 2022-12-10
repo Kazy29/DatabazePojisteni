@@ -1,0 +1,44 @@
+package com.mycompany.databazepojisteni;
+
+public class Databaze {
+    
+    public ArrayList<Pojistenec> databaze;
+    
+    public Databaze() {
+        this.databaze = new ArrayList<Pojistenec>();
+        System.out.println("vytvareni prazdne databaze");
+    }
+    
+    public void add(String jmeno, String prijmeni, int vek, Long telefon) {
+        System.out.println("vytvareni noveho pojistence");
+        this.databaze.add(new Pojistenec(jmeno, prijmeni, vek, telefon));
+    }
+    
+    public void listUsers() {
+        if (this.databaze.isEmpty()) {
+            System.out.println("Databaze je prazdna");
+            return;
+        }
+        
+        Iterator<Pojistenec> iterator = this.databaze.iterator();
+        while (iterator.hasNext()) {
+            Pojistenec pojistenec = iterator.next();
+            System.out.println(pojistenec.toString());
+        }
+        
+    }
+    
+    public void findUser(String jmeno, String prijmeni) {
+        Iterator<Pojistenec> iterator = this.databaze.iterator();
+        while (iterator.hasNext()) {
+            Pojistenec pojistenec = iterator.next();
+            if ((jmeno.equals(pojistenec.jmeno) && prijmeni.equals(pojistenec.prijmeni))) {
+                System.out.println(pojistenec.toString());
+                return;
+            }
+            
+        }
+        
+        System.out.println("Uzivatel neexistuje");
+    }
+}
